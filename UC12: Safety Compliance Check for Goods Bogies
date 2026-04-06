@@ -1,0 +1,59 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class GoodsBogie {
+    private String type;   // e.g., Cylindrical, Rectangular
+    private String cargo;  // e.g., Petroleum, Coal, Grain
+
+    public GoodsBogie(String type, String cargo) {
+        this.type = type;
+        this.cargo = cargo;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    @Override
+    public String toString() {
+        return type + " → Cargo: " + cargo;
+    }
+}
+
+public class TrainAppUC12 {
+
+    public static void main(String[] args) {
+        System.out.println("🚆 Welcome to the Train Consist Management App!");
+        System.out.println("Performing safety compliance check for goods bogies...\n");
+
+        // Prepare a list of goods bogies
+        List<GoodsBogie> goodsBogies = new ArrayList<>();
+        goodsBogies.add(new GoodsBogie("Cylindrical", "Petroleum")); // valid
+        goodsBogies.add(new GoodsBogie("Rectangular", "Coal"));      // valid
+        goodsBogies.add(new GoodsBogie("Cylindrical", "Coal"));      // invalid
+
+        // Safety compliance check using Streams
+        boolean isSafe = goodsBogies.stream()
+                .allMatch(b -> {
+                    if (b.getType().equalsIgnoreCase("Cylindrical")) {
+                        return b.getCargo().equalsIgnoreCase("Petroleum");
+                    }
+                    return true; // Non-cylindrical bogies can carry any cargo
+                });
+
+        // Display result
+        if (isSafe) {
+            System.out.println("✅ Train is SAFETY COMPLIANT.");
+        } else {
+            System.out.println("❌ Train is NOT SAFETY COMPLIANT.");
+        }
+
+        // Show bogie details
+        System.out.println("\nGoods Bogie Details:");
+        goodsBogies.forEach(System.out::println);
+    }
+}
