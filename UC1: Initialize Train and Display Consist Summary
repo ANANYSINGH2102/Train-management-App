@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class TrainApp {
+
+    // Entry point of the application
+    public static void main(String[] args) {
+        // Welcome message
+        System.out.println("🚆 Welcome to the Train Consist Management App!");
+        System.out.println("Initializing train consist...\n");
+
+        // Dynamic initialization of bogies list
+        List<String> bogies = new ArrayList<>();
+
+        // For UC1, we start with an empty consist
+        System.out.println("Train initialized successfully.");
+        System.out.println("Current bogie count: " + bogies.size());
+
+        // Display summary
+        System.out.println("Consist Summary:");
+        System.out.println("Engine attached, no bogies yet.");
+    }
+}
