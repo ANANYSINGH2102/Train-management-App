@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class TrainAppUC18 {
+
+    public static void main(String[] args) {
+        System.out.println("🚆 Welcome to the Train Consist Management App!");
+        System.out.println("Searching bogie IDs using Linear Search...\n");
+
+        // Array of bogie IDs (unsorted)
+        String[] bogieIDs = {"BG101", "BG205", "BG309", "BG412", "BG550"};
+
+        // Accept search key from user
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter bogie ID to search: ");
+        String searchKey = scanner.nextLine();
+
+        // Linear search logic
+        boolean found = false;
+        for (int i = 0; i < bogieIDs.length; i++) {
+            if (bogieIDs[i].equals(searchKey)) {
+                System.out.println("✅ Bogie ID " + searchKey + " found at position " + i);
+                found = true;
+                break; // Early termination once found
+            }
+        }
+
+        if (!found) {
+            System.out.println("❌ Bogie ID " + searchKey + " not found in the train consist.");
+        }
+
+        scanner.close();
+    }
+}
